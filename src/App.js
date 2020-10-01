@@ -68,10 +68,10 @@ function App() {
           </tr>
         </thead>
         <tbody>
-        {employeeDirectory.map(employee => (
+        {employeeDirectory.map((employee, id) => (
 
           <tr key={employee.login.uuid}>
-            <th scope="row" key={employee.login.uuid}>1</th>
+            <th scope="row" >{id +1}</th>
             <td>{employee.name.first} {employee.name.last}</td>
             <td>{employee.cell}</td>
             <td>{employee.location.city}</td>
