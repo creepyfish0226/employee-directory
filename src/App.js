@@ -44,10 +44,21 @@ function App() {
     setOrder(curr=> curr==="des"? "asc":"des")
     setEmployeeDirectory(newList)
   } 
+  const handleSearch=term=>{
+
+    const newList = employees.filter(employee => {
+      const name = `${employee.name.first} ${employee.name.last}`
+      return name.toLowerCase().includes(term.toLowerCase())
+
+    })
+   setEmployeeDirectory(newList)
+
+  }
 
   return (
     <>
-      <table class="table">
+      <input type="text" onChange={e=>handleSearch(e.target.value)}/> Name Search
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -59,7 +70,7 @@ function App() {
         <tbody>
         {employeeDirectory.map(employee => (
 
-          <tr>
+          <tr key={employee.login.uuid}>
             <th scope="row" key={employee.login.uuid}>1</th>
             <td>{employee.name.first} {employee.name.last}</td>
             <td>{employee.cell}</td>
